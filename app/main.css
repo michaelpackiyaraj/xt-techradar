@@ -22,7 +22,7 @@ body{
 ul{
     margin:0;
     padding:0;
-}
+}   
 .title{
     font-size: 25px;
     letter-spacing: 0.1em;
@@ -30,7 +30,8 @@ ul{
     margin: 0;
     font-weight: normal;
     text-align: center;
-    color: hsl(207, 56%, 45%);
+    color: #3279b3;
+    line-height: 1.5
 }
 .ring {
     float: left;
