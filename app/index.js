@@ -31,14 +31,11 @@
     }
     $("#textual-data").html(quadContainer);
     $(".quad").append(ringsContainer);
-    let entries = sortData(config.entries);
-    fillData(entries);
+    fillData(app.data.entries);
   }
   function sortData(entries) {
     return entries.sort(function(a, b) {
-      a = a.label.toLowerCase();
-      b = b.label.toLowerCase();
-      return a < b ? -1 : a > b ? 1 : 0;
+      return a.label.localeCompare(b.label);
     });
   }
   function fillData(entries) {
@@ -132,12 +129,13 @@
   $(document).ready(function() {
     $.getJSON("data")
       .done(function(data) {
+        sortData(data.entries);
+        app.data = data;
         radar_visualization(data);
         text_visualization(data);
         let uniqueTags = createFilterTags(data.entries);
         generatefilterTemplate(uniqueTags);
         filterDataOnChange();
-        app.data = data;
       })
       .fail(function(jqxhr, textStatus, error) {
         var err = textStatus + ", " + error;

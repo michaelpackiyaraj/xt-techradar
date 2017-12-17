@@ -5,21 +5,18 @@
   "colors": {
     "background": "#fff",
     "grid": "#bbb",
-    "inactive": "#ddd"
+    "blip_background": "#fff"
   },
   "title": "eXperience Technology Radar",
   "rings": [
     {
-      "name": "CONCEPTS",
-      "color": "#FFF"
+      "name": "CONCEPTS"
     },
     {
-      "name": "TOOLS/SDKs",
-      "color": "#FFF"
+      "name": "TOOLS/SDKs"
     },
     {
-      "name": "Frameworks",
-      "color": "#FFF"
+      "name": "Frameworks"
     }
   ],
   "quadrants": [

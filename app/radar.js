@@ -129,10 +129,6 @@ function radar_visualization(config) {
     var point = entry.segment.random();
     entry.x = point.x;
     entry.y = point.y;
-    entry.color =
-      entry.active || config.print_layout
-        ? config.rings[entry.ring].color
-        : config.colors.inactive;
   }
 
   // partition entries according to segments
@@ -153,9 +149,6 @@ function radar_visualization(config) {
   for (var quadrant of [2, 3, 1, 0]) {
     for (var ring = 0; ring < 3; ring++) {
       var entries = segmented[quadrant][ring];
-      entries.sort(function(a, b) {
-        return a.label.localeCompare(b.label);
-      });
       for (var i = 0; i < entries.length; i++) {
         entries[i].id = "" + id++;
       }
@@ -346,17 +339,17 @@ function radar_visualization(config) {
       blip
         .append("path")
         .attr("d", "M -11,5 11,5 0,-13 z") // triangle pointing up
-        .style("fill", d.color);
+        .style("fill", config.colors.blip_background);
     } else if (d.moved < 0) {
       blip
         .append("path")
         .attr("d", "M -11,-5 11,-5 0,13 z") // triangle pointing down
-        .style("fill", d.color);
+        .style("fill", config.colors.blip_background);
     } else {
       var blipCircle = blip
         .append("circle")
         .attr("r", 0)
-        .attr("fill", d.color)
+        .attr("fill", config.colors.blip_background)
         .attr("stroke", "#000")
         .attr("stroke-width", 0.5);
     }
