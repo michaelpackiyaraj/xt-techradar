@@ -11,7 +11,7 @@
         html: config.rings[ring].name
       });
       let ringDiv = $("<ul/>", {
-        class: "ring",
+        class: "ring ring" + ring,
         "data-ring": ring,
         html: ringTitle
       }).appendTo(ringsContainer);
@@ -31,25 +31,13 @@
     }
     $("#textual-data").html(quadContainer);
     $(".quad").append(ringsContainer);
-    fillData(app.data.entries);
   }
   function sortData(entries) {
     return entries.sort(function(a, b) {
       return a.label.localeCompare(b.label);
     });
   }
-  function fillData(entries) {
-    $(".ring li").remove();
-    $.each(entries, function(index, entry) {
-      let quadNumber = entry.quadrant,
-        ringNumber = entry.ring,
-        ringData = $("<li/>", { html: entry.label });
-      $(".quad-container")
-        .find("[data-quad='" + quadNumber + "']")
-        .find("[data-ring='" + ringNumber + "']")
-        .append(ringData);
-    });
-  }
+
   function createFilterTags(entries) {
     /*saving all array of tags */
     let tags = [];
@@ -104,7 +92,6 @@
   function filterData(filters) {
     if (filters.length === $(".filter-box input:checkbox").length) {
       $("#radar").html("");
-      fillData(app.data.entries);
       radar_visualization(app.data);
       return;
     }
@@ -114,7 +101,6 @@
           let platforms = entry.platform.map(function(platform) {
             return platform.toLowerCase();
           });
-          console.log(platforms, filter);
           return platforms.includes(filter.toLowerCase());
         });
       }
@@ -123,7 +109,6 @@
     data.entries = filteredData;
     $("#radar").html("");
     radar_visualization(data);
-    fillData(filteredData);
     data = "";
   }
   $(document).ready(function() {
@@ -131,8 +116,8 @@
       .done(function(data) {
         sortData(data.entries);
         app.data = data;
-        radar_visualization(data);
         text_visualization(data);
+        radar_visualization(data);
         let uniqueTags = createFilterTags(data.entries);
         generatefilterTemplate(uniqueTags);
         filterDataOnChange();

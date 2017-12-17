@@ -1,28 +1,4 @@
-// The MIT License (MIT)
-
-// Copyright (c) 2017 Zalando SE
-
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-
 function radar_visualization(config) {
-  // custom random number generator, to make random sequence reproducible
-  // source: https://stackoverflow.com/questions/521295
   var seed = 42;
   function random() {
     var x = Math.sin(seed++) * 10000;
@@ -121,7 +97,6 @@ function radar_visualization(config) {
       }
     };
   }
-
   // position each entry randomly in its segment
   for (var i = 0; i < config.entries.length; i++) {
     var entry = config.entries[i];
@@ -143,18 +118,31 @@ function radar_visualization(config) {
     var entry = config.entries[i];
     segmented[entry.quadrant][entry.ring].push(entry);
   }
+  $(".ring li").remove();
+  $.each(entries, function(index, entry) {
+    $(".quad-container")
+      .find("[data-quad='" + quadNumber + "']")
+      .find("[data-ring='" + ringNumber + "']")
+      .append(ringData);
+  });
 
   // assign unique sequential id to each entry
   var id = 1;
-  for (var quadrant of [2, 3, 1, 0]) {
-    for (var ring = 0; ring < 3; ring++) {
+  for (let quadrant of [2, 3, 1, 0]) {
+    let textualQuadrant = $(".quad-container" + " .quad" + quadrant);
+    for (let ring = 0; ring < 3; ring++) {
+      let textualRing = textualQuadrant.find(".ring" + ring);
       var entries = segmented[quadrant][ring];
-      for (var i = 0; i < entries.length; i++) {
+      for (let i = 0; i < entries.length; i++) {
         entries[i].id = "" + id++;
+        let ringData = $("<li/>", { html: entries[i].label });
+        let entryNumber = $("<span/>", { html: id - 1 + "." }).appendTo(
+          ringData
+        );
+        textualRing.append(ringData);
       }
     }
   }
-
   function translate(x, y) {
     return "translate(" + x + "," + y + ")";
   }
