@@ -134,12 +134,11 @@ function radar_visualization(config) {
       let textualRing = textualQuadrant.find(".ring" + ring);
       var entries = segmented[quadrant][ring];
       for (let i = 0; i < entries.length; i++) {
-        entries[i].id = "" + id++;
-        let ringData = $("<li/>", { html: entries[i].label });
-        let entryNumber = $("<span/>", { html: id - 1 + "." }).appendTo(
-          ringData
-        );
+        entries[i].id = "" + id;
+        let ringData = $("<li/>", { html: entries[i].label, id: "data-" + id });
+        let entryNumber = $("<span/>", { html: id + "." }).appendTo(ringData);
         textualRing.append(ringData);
+        id++;
       }
     }
   }
@@ -277,7 +276,7 @@ function radar_visualization(config) {
     .style("fill", "#333");
 
   function showBubble(d) {
-    if (d.active || config.print_layout) {
+    if (config.print_layout) {
       var tooltip = d3.select("#bubble text").text(d.label);
       var bbox = tooltip.node().getBBox();
       d3
@@ -294,6 +293,10 @@ function radar_visualization(config) {
         .select("#bubble path")
         .attr("transform", translate(bbox.width / 2 - 5, 3));
     }
+    let dataIdSelector = $("#data-" + d.id);
+    dataIdSelector.css({ background: config.colors.text_hover });
+    let topPos = dataIdSelector.position().top;
+    dataIdSelector.closest(".rings-container").scrollTop(topPos - 150);
   }
 
   function hideBubble(d) {
@@ -301,6 +304,7 @@ function radar_visualization(config) {
       .select("#bubble")
       .attr("transform", translate(0, 0))
       .style("opacity", 0);
+    $("#data-" + d.id).css({ background: "none" });
   }
 
   // draw blips on radar

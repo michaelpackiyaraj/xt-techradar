@@ -5,7 +5,8 @@
   "colors": {
     "background": "#fff",
     "grid": "#bbb",
-    "blip_background": "#fff"
+    "blip_background": "#fff",
+    "text_hover":"#ccc"
   },
   "title": "eXperience Technology Radar",
   "rings": [
