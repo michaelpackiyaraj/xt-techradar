@@ -136,7 +136,7 @@ function radar_visualization(config) {
       for (let i = 0; i < entries.length; i++) {
         entries[i].id = "" + id;
         let ringData = $("<li/>", { html: entries[i].label, id: "data-" + id });
-        let entryNumber = $("<span/>", { html: id + "." }).appendTo(ringData);
+        let entryNumber = $("<span/>", { html: id + "." }).prependTo(ringData);
         textualRing.append(ringData);
         id++;
       }
