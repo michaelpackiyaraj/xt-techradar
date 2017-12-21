@@ -195,3 +195,42 @@ footer{
     font-size: 12px;
     letter-spacing: 0.1em;
 }
+
+.sweep {
+    position: absolute;
+    left: 47.4%;
+    top: 13%;
+    height: 86%;
+    width: 75px;
+    animation: sweep 3s linear infinite;
+}
+
+.gradient {
+    background: linear-gradient(257deg, #2fdb4c ,transparent 70%,transparent );
+    height: 50%;
+    position: relative;
+    right: 40px;
+}
+.transparent {
+    background: transparent;
+}
+
+@keyframes sweep {
+    100% {transform: rotate(360deg);} 
+}
+
+.dark-theme {
+    background: black !important ;
+    color: white;
+}
+.dark-theme-toggle {
+    cursor: pointer;
+    position: relative;
+    left: 86vw;
+    background: #2f87db;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    border: white;
+    outline: none;
+}

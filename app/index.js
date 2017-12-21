@@ -89,6 +89,18 @@
       filterData(filters);
     });
   }
+  function darkThemeToggle() {
+    $('#js-dark-theme').on('click', function(){
+      if($(this).text() === 'Dark theme') {
+        $(this).text('Light theme');
+      }
+      else {
+        $(this).text('Dark theme');
+      }
+      $('body').toggleClass('dark-theme');
+      $('#radar').toggleClass('dark-theme');
+    })
+  }
   function filterData(filters) {
     if (filters.length === $(".filter-box input:checkbox").length) {
       $("#radar").html("");
@@ -121,6 +133,7 @@
         let uniqueTags = createFilterTags(data.entries);
         generatefilterTemplate(uniqueTags);
         filterDataOnChange();
+        darkThemeToggle();
       })
       .fail(function(jqxhr, textStatus, error) {
         var err = textStatus + ", " + error;
