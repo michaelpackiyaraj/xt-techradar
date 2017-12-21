@@ -96,10 +96,10 @@
     {
       "quadrant": 3,
       "ring": 1,
-      "label": "Vue JS",
+      "label": "Redux",
       "active": false,
-      "description": "A perfect combination of the best of Angular and React",
-      "stars": 2345
+      "description": "Redux is a predictable state container for JavaScript apps.",
+      "stars": 36534
     }
   ]
 }

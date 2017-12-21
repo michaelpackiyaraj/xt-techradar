@@ -91,55 +91,67 @@ function radar_visualization(config) {
   }
 
   function segment(quadrant, ring) {
-    var polar_min = {
-      t: quadrants[quadrant].radial_min * Math.PI,
-      r: ring == 0 ? 30 : rings[ring - 1].radius
-    };
-    var polar_max = {
-      t: quadrants[quadrant].radial_max * Math.PI,
-      r: rings[ring].radius
-    };
-    var cartesian_min = {
-      x: 15 * quadrants[quadrant].factor_x,
-      y: 15 * quadrants[quadrant].factor_y
-    };
-    var cartesian_max = {
-      x: rings[3].radius * quadrants[quadrant].factor_x,
-      y: rings[3].radius * quadrants[quadrant].factor_y
-    };
-    return {
-      clipx: function(d) {
-        var c = bounded_box(d, cartesian_min, cartesian_max);
-        var p = bounded_ring(polar(c), polar_min.r + 15, polar_max.r - 15);
-        d.x = cartesian(p).x; // adjust data too!
-        return d.x;
-      },
-      clipy: function(d) {
-        var c = bounded_box(d, cartesian_min, cartesian_max);
-        var p = bounded_ring(polar(c), polar_min.r + 15, polar_max.r - 15);
-        d.y = cartesian(p).y; // adjust data too!
-        return d.y;
-      },
-      random: function() {
-        return cartesian({
-          t: random_between(polar_min.t, polar_max.t),
-          r: normal_between(polar_min.r, polar_max.r)
-        });
-      }
-    };
+
+    // Edge case handling for offset. Quandrant count start from 0 instead of 1.
+    if (quadrant <= 3) {
+      var polar_min = {
+        t: quadrants[quadrant].radial_min * Math.PI,
+        r: ring == 0 ? 30 : rings[ring - 1].radius
+      };
+      var polar_max = {
+        t: quadrants[quadrant].radial_max * Math.PI,
+        r: rings[ring].radius
+      };
+      var cartesian_min = {
+        x: 15 * quadrants[quadrant].factor_x,
+        y: 15 * quadrants[quadrant].factor_y
+      };
+      var cartesian_max = {
+        x: rings[3].radius * quadrants[quadrant].factor_x,
+        y: rings[3].radius * quadrants[quadrant].factor_y
+      };
+  
+      return {
+        clipx: function(d) {
+          var c = bounded_box(d, cartesian_min, cartesian_max);
+          var p = bounded_ring(polar(c), polar_min.r + 15, polar_max.r - 15);
+          d.x = cartesian(p).x; // adjust data too!
+          return d.x;
+        },
+        clipy: function(d) {
+          var c = bounded_box(d, cartesian_min, cartesian_max);
+          var p = bounded_ring(polar(c), polar_min.r + 15, polar_max.r - 15);
+          d.y = cartesian(p).y; // adjust data too!
+          return d.y;
+        },
+        random: function() {
+          return cartesian({
+            t: random_between(polar_min.t, polar_max.t),
+            r: normal_between(polar_min.r, polar_max.r)
+          });
+        }
+      };
+    } else {
+      console.error('One or more blips are not visible since they contain incorrect quandrant indices. Quandrant count starts at 0. ');
+      return; 
+    }
   }
 
   // position each entry randomly in its segment
   for (var i = 0; i < config.entries.length; i++) {
     var entry = config.entries[i];
     entry.segment = segment(entry.quadrant, entry.ring);
-    var point = entry.segment.random();
-    entry.x = point.x;
-    entry.y = point.y;
-    entry.color =
-      entry.active || config.print_layout
-        ? config.rings[entry.ring].color
-        : config.colors.inactive;
+
+    var point = entry.segment !== undefined ? entry.segment.random() : null;
+
+    if (point !== null) {
+      entry.x = point.x;
+      entry.y = point.y;
+      entry.color =
+        entry.active || config.print_layout
+          ? config.rings[entry.ring].color
+          : config.colors.inactive;
+    }
   }
 
   // partition entries according to segments
@@ -152,7 +164,7 @@ function radar_visualization(config) {
   }
   for (var i = 0; i < config.entries.length; i++) {
     var entry = config.entries[i];
-    segmented[entry.quadrant][entry.ring].push(entry);
+    entry.quadrant <= 3 ? segmented[entry.quadrant][entry.ring].push(entry) : null;
   }
 
   // assign unique sequential id to each entry
@@ -354,7 +366,7 @@ function radar_visualization(config) {
         .style("fill", "#fff")
         .style("font-family", "Arial, Helvetica")
         .style("font-size", function(d) {
-          return blip_text.length > 2 ? "8" : "9";
+          return blip_text && blip_text.length > 2 ? "8" : "9";
         })
         .style("pointer-events", "none")
         .style("user-select", "none");
@@ -363,9 +375,11 @@ function radar_visualization(config) {
 
   // make sure that blips stay inside their segment
   function ticked() {
-    blips.attr("transform", function(d) {
-      return translate(d.segment.clipx(d), d.segment.clipy(d));
-    });
+      blips.attr("transform", function(d) {
+        if (d.segment !== undefined) {
+          return translate(d.segment.clipx(d), d.segment.clipy(d));
+        }
+      });
   }
 
   // distribute blips, while avoiding collisions
