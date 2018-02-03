@@ -60,6 +60,8 @@ function radar_visualization(config) {
   }
 
   function segment(quadrant, ring) {
+    // Edge case handling for offset. Quandrant count start from 0 instead of 1.
+    if (quadrant <= 3) {
     var polar_min = {
       t: quadrants[quadrant].radial_min * Math.PI,
       r: ring == 0 ? 30 : rings[ring - 1].radius
@@ -97,13 +99,21 @@ function radar_visualization(config) {
       }
     };
   }
+  else {
+    console.error('One or more blips are not visible since they contain incorrect quandrant indices. Quandrant count starts at 0. ');
+    return;
+  }
+  }
   // position each entry randomly in its segment
   for (var i = 0; i < config.entries.length; i++) {
     var entry = config.entries[i];
     entry.segment = segment(entry.quadrant, entry.ring);
-    var point = entry.segment.random();
-    entry.x = point.x;
-    entry.y = point.y;
+    var point = entry.segment !== undefined ? entry.segment.random() : null;
+    if (point !== null) {
+      entry.x = point.x;
+      entry.y = point.y;
+    }
+
   }
 
   // partition entries according to segments
@@ -116,7 +126,7 @@ function radar_visualization(config) {
   }
   for (var i = 0; i < config.entries.length; i++) {
     var entry = config.entries[i];
-    segmented[entry.quadrant][entry.ring].push(entry);
+    entry.quadrant <= 3 ? segmented[entry.quadrant][entry.ring].push(entry) : null;
   }
   $(".ring li").remove();
   $.each(entries, function(index, entry) {
@@ -368,14 +378,16 @@ function radar_visualization(config) {
       .transition()
       .duration(700)
       .attr("font-size", function(d) {
-        return blip_text.length > 2 ? "9" : "10";
+        return d.length > 2 ? "9" : "10";
       });
   });
 
   // make sure that blips stay inside their segment
   function ticked() {
     blips.attr("transform", function(d) {
-      return translate(d.segment.clipx(d), d.segment.clipy(d));
+      if (d.segment !== undefined) {
+        return translate(d.segment.clipx(d), d.segment.clipy(d));
+      }
     });
   }
 
