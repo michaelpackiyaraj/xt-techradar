@@ -1,243 +1,44 @@
 {
-"entries": [
+  "svg_id": "radar",
+  "width": 1345,
+  "height":620,
+  "colors": {
+    "background": "#fff",
+    "grid": "#bbb",
+    "blip_background": "#fff",
+    "text_hover":"#ccc"
+  },
+  "title": "eXperience Technology Radar",
+  "rings": [
     {
-      "quadrant": 0,
-      "ring": 2,
-      "label": "Preact",
-      "description": "",
-      "stars": 1234,
-      "platform":["web", "mobile"]
+      "name": "CONCEPTS"
     },
     {
-      "quadrant": 0,
-      "ring": 2,
-      "label": "React Native",
-      "description": "",
-      "stars": 1234,
-      "platform":["mobile", "AR/VR"]
-    },
-
-    {
-      "quadrant": 0,
-      "ring": 2,
-      "label": "Redux",
-      "description": "",
-      "stars": 2345,
-      "platform":["web"]
+      "name": "TOOLS/SDKs"
     },
     {
-      "quadrant": 0,
-      "ring": 2,
-      "label": "Angular",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 0,
-      "ring": 2,
-      "label": "Ionic",
-      "description": "",
-      "stars":1234,
-      "platform":["mobile"]
-    },
-    {
-      "quadrant": 0,
-      "ring": 1,
-      "label": "TypeScript",
-      "description": "",
-      "stars": 12345,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 1,
-      "ring": 1,
-      "label": "Angular",
-      "description": "Angular is an extremely developer friendly framework",
-      "stars": 2345
-    },
-    {
-      "quadrant": 2,
-      "ring": 1,
-      "label": "React",
-      "description": "Most Popular JS Library",
-      "stars": 2345
-    },
-    {
-      "quadrant": 3,
-      "ring": 1,
-      "label": "Vue JS",
-      "description": "A perfect combination of the best of Angular and React",
-      "stars": 2345
-    },
-    {
-      "quadrant": 3,
-      "ring": 2,
-      "label": "Angular4",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 2,
-      "ring": 2,
-      "label": "React",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 2,
-      "ring": 1,
-      "label": "Mocha",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 2,
-      "ring": 1,
-      "label": "Jasmine",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 2,
-      "ring": 1,
-      "label": "Gulp",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 2,
-      "ring": 1,
-      "label": "npm",
-      "description": "",
-      "stars": 1234,
-      "platform":["web", "mobile"]
-    },
-    {
-      "quadrant": 3,
-      "ring": 1,
-      "label": "Webpack",
-      "description": "",
-      "stars": 1234,
-      "platform":["web", "mobile"]
-    },
-    {
-      "quadrant": 1,
-      "ring": 1,
-      "label": "Yarn",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 0,
-      "ring": 1,
-      "label": "Eslint",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 2,
-      "ring": 1,
-      "label": "Jslint",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 2,
-      "ring": 0,
-      "label": "JS",
-      "description": "",
-      "stars": 1234,
-      "platform":["web","mobile"]
-    },
-    {
-      "quadrant": 2,
-      "ring": 0,
-      "label": "HTML5",
-      "description": "",
-      "stars": 1234,
-      "platform":["web","mobile"]
-    },
-    {
-      "quadrant": 2,
-      "ring": 0,
-      "label": "CSS3",
-      "description": "",
-      "stars": 1234,
-      "platform":["web","mobile"]
-    },
-    {
-      "quadrant": 2,
-      "ring": 1,
-      "label": "SCSS",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 1,
-      "ring": 1,
-      "label": "LESS",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 2,
-      "ring": 2,
-      "label": "Boostrap",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 1,
-      "ring": 2,
-      "label": "Angular JS",
-      "description": "",
-      "stars": 1234,
-      "platform":["web", "mobile"]
-    },
-    {
-      "quadrant": 0,
-      "ring": 0,
-      "label": "ES6",
-      "description": "",
-      "stars": 1234,
-      "platform":["web", "mobile"]
-    },
-    {
-      "quadrant": 3,
-      "ring": 0,
-      "label": "ES7",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 3,
-      "ring": 2,
-      "label": "Node JS",
-      "description": "",
-      "stars": 1234,
-      "platform":["web"]
-    },
-    {
-      "quadrant": 1,
-      "ring": 2,
-      "label": "C#",
-      "description": "",
-      "stars": 1234,
-      "platform":["AR/VR"]
+      "name": "Frameworks"
     }
+  ],
+  "quadrants": [
+    {
+      "name": "INCUBATE",
+      "bgcolor": "#93c47d"
+    },
+    {
+      "name": "De-Emphasise",
+      "bgcolor": "#93d2c2"
+    },
+    {
+      "name": "Ubiquitious",
+      "bgcolor": "#507173"
+    },
+    {
+      "name": "Scale/Grow",
+      "bgcolor": "#2e94cb"
+    }
+  ],
 
-  ]
+  "print_layout": true
+  
 }
