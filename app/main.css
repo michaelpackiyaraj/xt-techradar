@@ -202,11 +202,11 @@ footer{
     top: 13%;
     height: 86%;
     width: 75px;
-    animation: sweep 3s linear infinite;
+    animation: sweep 6s linear infinite;
 }
 
 .gradient {
-    background: linear-gradient(257deg, #2fdb4c ,transparent 70%,transparent );
+    background: linear-gradient(257deg, #00ff22 ,transparent 70%,transparent );
     height: 50%;
     position: relative;
     right: 40px;
@@ -216,7 +216,21 @@ footer{
 }
 
 @keyframes sweep {
-    100% {transform: rotate(360deg);} 
+    0% {
+        opacity: 1;
+        transform: rotate(0deg)
+    }
+    50% {
+        opacity: 1;
+        transform: rotate(360deg);
+    }
+    51% {
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(360deg);
+        opacity: 0;
+    }
 }
 
 .dark-theme {
