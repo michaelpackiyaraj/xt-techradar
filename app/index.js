@@ -90,7 +90,7 @@
     });
   }
   function darkThemeToggle() {
-    $('#js-dark-theme').on('click', function(){
+    $('#js-dark-theme').on('click', function() {
       if($(this).text() === 'Dark theme') {
         $(this).text('Light theme');
       }
@@ -100,6 +100,18 @@
       $('body').toggleClass('dark-theme');
       $('#radar').toggleClass('dark-theme');
     })
+  }
+  function toggleSnackBar() {
+    var snackbar = $('#snackbar');
+    var body = $('body');
+    if(!navigator.onLine){
+        snackbar.addClass('show');
+        body.addClass('offline');
+    }
+     else {
+        snackbar.removeClass('show');
+        body.removeClass('offline');
+    }
   }
   function filterData(filters) {
     if (filters.length === $(".filter-box input:checkbox").length) {
@@ -133,11 +145,24 @@
         let uniqueTags = createFilterTags(data.entries);
         generatefilterTemplate(uniqueTags);
         filterDataOnChange();
-        darkThemeToggle();
       })
       .fail(function(jqxhr, textStatus, error) {
         var err = textStatus + ", " + error;
         console.log("Request Failed: " + err);
       });
+      darkThemeToggle();
+      if('serviceWorker' in navigator) {
+        navigator.serviceWorker
+                 .register('/service-worker.js')
+                 .then(function() { console.log("Service Worker Registered"); });
+      } else {
+          console.log("This browser does not support service-worker");
+      }
+      window.addEventListener('online' , toggleSnackBar);
+      window.addEventListener('offline', toggleSnackBar);
+      toggleSnackBar();
+      $('body').on('click','.close-icon', function() {
+        $('#snackbar').removeClass('show');
+     });
   });
 })((window.app = window.app || {}), jQuery);
