@@ -8,7 +8,6 @@ self.addEventListener('install', function (e) {
                 '/main.css',
                 '/data',
                 '/radar.js',
-                '/assets/techradar_1.png',
                 '/assets/xt_logo.png'
             ]);
         })
