@@ -10,9 +10,15 @@
 <![endif]-->
 </head>
 <body>
-<header><h1 class="title">&nbsp;</h1></header>  
+<header><h1 class="title">&nbsp;</h1></header> 
+<button class="dark-theme-toggle" id="js-dark-theme">Dark theme</button> 
 <div class="wrapper">
 <div class="filter-box"></div>
+
+<div class="sweep">
+    <div class="gradient"></div>
+    <div class="transparent"></div>
+</div>
 <svg id="radar"></svg>
 <div id="textual-data">&nbsp;</div>
 </div>
@@ -21,5 +27,6 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="radar.js"></script>
 <script src="index.js"></script>
+<div id="snackbar">You are offline<span class="close-icon">CLOSE</span></div>
 </body>
 </html>

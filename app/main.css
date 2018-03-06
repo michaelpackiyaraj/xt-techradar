@@ -195,3 +195,80 @@ footer{
     font-size: 12px;
     letter-spacing: 0.1em;
 }
+
+.sweep {
+    position: absolute;
+    left: 47.4%;
+    top: 13%;
+    height: 86%;
+    width: 75px;
+    animation: sweep 6s linear infinite;
+}
+
+.gradient {
+    background: linear-gradient(257deg, #00ff22 ,transparent 70%,transparent );
+    height: 50%;
+    position: relative;
+    right: 40px;
+}
+.transparent {
+    background: transparent;
+}
+
+@keyframes sweep {
+    0% {
+        opacity: 1;
+        transform: rotate(0deg)
+    }
+    50% {
+        opacity: 1;
+        transform: rotate(360deg);
+    }
+    51% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.dark-theme {
+    background: black !important ;
+    color: white;
+}
+.dark-theme-toggle {
+    cursor: pointer;
+    position: relative;
+    left: 86vw;
+    background: #2f87db;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    border: white;
+    outline: none;
+}
+
+#snackbar {
+        background: #363636;
+        color: white;
+        position: fixed;
+        bottom: 0;
+        width: 250px;
+        padding: 15px;
+        left: 42%;
+        transform: translateY(54px);
+        transition: transform 0.5s linear;
+}
+.close-icon {
+    float: right;
+    font-size: 12px;
+    color: cornflowerblue;
+    cursor: pointer;
+    padding: 3px;
+}
+#snackbar.show {
+    transform: translateY(0px);
+}
+.offline {
+    filter: grayscale(80%);
+}
