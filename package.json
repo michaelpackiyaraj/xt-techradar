@@ -30,6 +30,7 @@
     "babel-preset-env": "^1.6.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
+    "gulp-markdown": "^2.0.1",
     "gulp-json-concat": "^0.1.1",
     "gulp-uglify": "^3.0.0"
   }

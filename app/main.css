@@ -272,3 +272,18 @@ footer{
 .offline {
     filter: grayscale(80%);
 }
+.close-btn {
+    text-decoration: none;
+    font-size: 50px;
+    float: right;
+}
+
+.dark-theme .sidenav {
+    background: #fff;
+    color: #000;
+}
+.sidenav {
+    background: #000;
+    color: #fff;
+    padding: 30px;
+}

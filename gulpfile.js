@@ -2,6 +2,7 @@ const gulp = require("gulp");
 const uglify = require("gulp-uglify");
 const babel = require("gulp-babel");
 var jsonConcat = require('gulp-json-concat');
+const markdown = require('gulp-markdown');
 
 gulp.task("scripts", () => {
   gulp
@@ -31,6 +32,12 @@ gulp.task('merge-json', () => {
     }))
     .pipe(gulp.dest('data/'));
 });
+// convert markdown to html
+gulp.task('mh', () =>
+    gulp.src('data/*.md')
+        .pipe(markdown())
+        .pipe(gulp.dest('app/templates'))
+);
 
 gulp.task("copy-data", () => {
   gulp.src("data/*.json").pipe(gulp.dest("functions/data"));

@@ -317,6 +317,10 @@ function radar_visualization(config) {
     $("#data-" + d.id).css({ background: "none" });
   }
 
+  function populateSideNav(d){
+     $('#slider').slideReveal('show');
+     $('.tech-content').load('templates/'+d.label+'.md');
+  }
   // draw blips on radar
   var blips = rink
     .selectAll(".blip")
@@ -325,8 +329,10 @@ function radar_visualization(config) {
     .append("g")
     .attr("class", "blip")
     .on("mouseover", showBubble)
-    .on("mouseout", hideBubble);
+    .on("mouseout", hideBubble)
+    .on("click", populateSideNav);
 
+  
   // configure each blip
   blips.each(function(d) {
     var blip = d3.select(this);
