@@ -1,0 +1,10 @@
+{
+	"quadrant": 2,
+	"ring": 1,
+	"label": "Jslint",
+	"description": "",
+	"stars": 1234,
+	"platform": [
+		"web"
+	]
+}

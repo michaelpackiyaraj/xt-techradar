@@ -1,0 +1,11 @@
+{
+	"quadrant": 0,
+	"ring": 2,
+	"label": "Preact",
+	"description": "",
+	"stars": 1234,
+	"platform": [
+		"web",
+		"mobile"
+	]
+}

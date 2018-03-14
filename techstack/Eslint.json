@@ -1,0 +1,10 @@
+{
+	"quadrant": 0,
+	"ring": 1,
+	"label": "Eslint",
+	"description": "",
+	"stars": 1234,
+	"platform": [
+		"web"
+	]
+}

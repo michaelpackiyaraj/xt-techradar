@@ -1,0 +1,10 @@
+{
+	"quadrant": 0,
+	"ring": 1,
+	"label": "TypeScript",
+	"description": "",
+	"stars": 12345,
+	"platform": [
+		"web"
+	]
+}

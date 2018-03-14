@@ -1,0 +1,10 @@
+{
+	"quadrant": 0,
+	"ring": 2,
+	"label": "Redux",
+	"description": "",
+	"stars": 2345,
+	"platform": [
+		"web"
+	]
+}

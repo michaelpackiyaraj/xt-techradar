@@ -1,0 +1,11 @@
+{
+	"quadrant": 2,
+	"ring": 0,
+	"label": "CSS3",
+	"description": "",
+	"stars": 1234,
+	"platform": [
+		"web",
+		"mobile"
+	]
+}
