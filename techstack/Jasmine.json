@@ -1,0 +1,10 @@
+{
+	"quadrant": 2,
+	"ring": 1,
+	"label": "Jasmine",
+	"description": "",
+	"stars": 1234,
+	"platform": [
+		"web"
+	]
+}

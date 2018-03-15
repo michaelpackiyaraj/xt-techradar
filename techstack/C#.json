@@ -1,0 +1,10 @@
+{
+	"quadrant": 1,
+	"ring": 2,
+	"label": "C#",
+	"description": "",
+	"stars": 1234,
+	"platform": [
+		"AR/VR"
+	]
+}
