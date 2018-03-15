@@ -1,0 +1,11 @@
+{
+	"quadrant": 0,
+	"ring": 2,
+	"label": "React Native",
+	"description": "",
+	"stars": 1234,
+	"platform": [
+		"mobile",
+		"AR/VR"
+	]
+}

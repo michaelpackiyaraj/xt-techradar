@@ -1,0 +1,10 @@
+{
+	"quadrant": 3,
+	"ring": 0,
+	"label": "ES7",
+	"description": "",
+	"stars": 1234,
+	"platform": [
+		"web"
+	]
+}

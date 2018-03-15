@@ -1,0 +1,11 @@
+{
+	"quadrant": 1,
+	"ring": 2,
+	"label": "Angular JS",
+	"description": "",
+	"stars": 1234,
+	"platform": [
+		"web",
+		"mobile"
+	]
+}

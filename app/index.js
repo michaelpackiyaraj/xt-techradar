@@ -164,5 +164,12 @@
       $('body').on('click','.close-icon', function() {
         $('#snackbar').removeClass('show');
      });
+      var slider = $('#slider').slideReveal({
+      position: 'right',
+      width: '33%'
+   });
+   $('.close-btn').on('click', function(){
+     slider.slideReveal('hide');
+   })
   });
 })((window.app = window.app || {}), jQuery);
