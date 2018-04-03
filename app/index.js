@@ -1,36 +1,36 @@
 (function(app, $) {
   function text_visualization(config) {
-    $(".title").html(config.title);
+    $('.title').html(config.title);
     /* Rings */
-    let ringsContainer = $("<div/>", { class: "rings-container" }).appendTo(
-      $(".title")
+    let ringsContainer = $('<div/>', { class: 'rings-container' }).appendTo(
+      $('.title')
     );
     for (let ring = 0; ring < config.rings.length; ring++) {
-      let ringTitle = $("<label/>", {
-        class: "ring-title",
+      let ringTitle = $('<label/>', {
+        class: 'ring-title',
         html: config.rings[ring].name
       });
-      let ringDiv = $("<ul/>", {
-        class: "ring ring" + ring,
-        "data-ring": ring,
+      let ringDiv = $('<ul/>', {
+        class: 'ring ring' + ring,
+        'data-ring': ring,
         html: ringTitle
       }).appendTo(ringsContainer);
     }
     /* Quadrants */
-    let quadContainer = $("<div/>", { class: "quad-container" });
+    let quadContainer = $('<div/>', { class: 'quad-container' });
     for (let quad = 0; quad < config.quadrants.length; quad++) {
-      let quadTitle = $("<span/>", {
-        class: "quad-title",
+      let quadTitle = $('<span/>', {
+        class: 'quad-title',
         html: config.quadrants[quad].name
       });
-      let quadDiv = $("<div/>", {
-        class: "quad quad" + quad,
-        "data-quad": quad,
+      let quadDiv = $('<div/>', {
+        class: 'quad quad' + quad,
+        'data-quad': quad,
         html: quadTitle
       }).appendTo(quadContainer);
     }
-    $("#textual-data").html(quadContainer);
-    $(".quad").append(ringsContainer);
+    $('#textual-data').html(quadContainer);
+    $('.quad').append(ringsContainer);
   }
   function sortData(entries) {
     return entries.sort(function(a, b) {
@@ -53,35 +53,35 @@
     return uniqueTags;
   }
   function generatefilterTemplate(filterTags) {
-    let filterTitle = $("<span/>", { html: "Filter By Platforms" });
-    let filterOptionsBox = $("<div/>", { class: "filter-options" }).append(
+    let filterTitle = $('<span/>', { html: 'Filter By Platforms' });
+    let filterOptionsBox = $('<div/>', { class: 'filter-options' }).append(
       filterTitle
     );
     $.each(filterTags, function(index, tag) {
-      let inputBoxContainer = $("<div/>", { class: "filter-tags" }).appendTo(
+      let inputBoxContainer = $('<div/>', { class: 'filter-tags' }).appendTo(
         filterOptionsBox
       );
       $(inputBoxContainer).append(
-        $("<input/>", {
+        $('<input/>', {
           value: tag,
-          type: "checkbox",
-          name: "filter_tags",
+          type: 'checkbox',
+          name: 'filter_tags',
           id: tag,
           checked: true
         })
       );
       $(inputBoxContainer).append(
-        $("<label/>", {
+        $('<label/>', {
           for: tag,
           text: tag
         })
       );
     });
-    filterOptionsBox.appendTo($(".filter-box"));
+    filterOptionsBox.appendTo($('.filter-box'));
   }
   function filterDataOnChange() {
-    $(".filter-box input").on("change", function() {
-      let filters = $(".filter-box input:checkbox:checked")
+    $('.filter-box input').on('change', function() {
+      let filters = $('.filter-box input:checkbox:checked')
         .map(function() {
           return $(this).val();
         })
@@ -91,31 +91,29 @@
   }
   function darkThemeToggle() {
     $('#js-dark-theme').on('click', function() {
-      if($(this).text() === 'Dark theme') {
+      if ($(this).text() === 'Dark theme') {
         $(this).text('Light theme');
-      }
-      else {
+      } else {
         $(this).text('Dark theme');
       }
       $('body').toggleClass('dark-theme');
       $('#radar').toggleClass('dark-theme');
-    })
+    });
   }
   function toggleSnackBar() {
     var snackbar = $('#snackbar');
     var body = $('body');
-    if(!navigator.onLine){
-        snackbar.addClass('show');
-        body.addClass('offline');
-    }
-     else {
-        snackbar.removeClass('show');
-        body.removeClass('offline');
+    if (!navigator.onLine) {
+      snackbar.addClass('show');
+      body.addClass('offline');
+    } else {
+      snackbar.removeClass('show');
+      body.removeClass('offline');
     }
   }
   function filterData(filters) {
-    if (filters.length === $(".filter-box input:checkbox").length) {
-      $("#radar").html("");
+    if (filters.length === $('.filter-box input:checkbox').length) {
+      $('#radar').html('');
       radar_visualization(app.data);
       return;
     }
@@ -131,12 +129,12 @@
     });
     let data = Object.assign({}, app.data);
     data.entries = filteredData;
-    $("#radar").html("");
+    $('#radar').html('');
     radar_visualization(data);
-    data = "";
+    data = '';
   }
   $(document).ready(function() {
-    $.getJSON("data")
+    $.getJSON('data')
       .done(function(data) {
         sortData(data.entries);
         app.data = data;
@@ -147,29 +145,29 @@
         filterDataOnChange();
       })
       .fail(function(jqxhr, textStatus, error) {
-        var err = textStatus + ", " + error;
-        console.log("Request Failed: " + err);
+        var err = textStatus + ', ' + error;
+        console.log('Request Failed: ' + err);
       });
-      darkThemeToggle();
-      if('serviceWorker' in navigator) {
-        navigator.serviceWorker
-                 .register('/service-worker.js')
-                 .then(function() { console.log("Service Worker Registered"); });
-      } else {
-          console.log("This browser does not support service-worker");
-      }
-      window.addEventListener('online' , toggleSnackBar);
-      window.addEventListener('offline', toggleSnackBar);
-      toggleSnackBar();
-      $('body').on('click','.close-icon', function() {
-        $('#snackbar').removeClass('show');
-     });
-      var slider = $('#slider').slideReveal({
+    darkThemeToggle();
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker;
+      //  .register('/service-worker.js')
+      //  .then(function() { console.log("Service Worker Registered"); });
+    } else {
+      console.log('This browser does not support service-worker');
+    }
+    window.addEventListener('online', toggleSnackBar);
+    window.addEventListener('offline', toggleSnackBar);
+    toggleSnackBar();
+    $('body').on('click', '.close-icon', function() {
+      $('#snackbar').removeClass('show');
+    });
+    var slider = $('#slider').slideReveal({
       position: 'right',
       width: '33%'
-   });
-   $('.close-btn').on('click', function(){
-     slider.slideReveal('hide');
-   })
+    });
+    $('.close-btn').on('click', function() {
+      slider.slideReveal('hide');
+    });
   });
 })((window.app = window.app || {}), jQuery);

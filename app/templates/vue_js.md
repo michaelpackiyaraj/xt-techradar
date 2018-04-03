@@ -1,4 +1,4 @@
-# Angular
+# Vue Js
 
 ### Emerging | Framework
 
@@ -10,4 +10,4 @@
 
 ## Resources
 
-www.agular.io
+https://vuejs.org/
