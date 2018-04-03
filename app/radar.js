@@ -320,10 +320,16 @@ function radar_visualization(config) {
   }
 
   function populateSideNav(d) {
+    let x = $('zero-md');
     $('#slider').slideReveal('show');
-    let frameworkName = d.label.replace(/ /g, '_').toLowerCase();
+    let frameworkName = `templates/${d.label
+      .replace(/ /g, '_')
+      .toLowerCase()}.md`;
+
     console.log(frameworkName);
-    $('.tech-content').load('templates/' + frameworkName + '.md');
+    x.prop('file', frameworkName);
+
+    // $('.tech-content').load('templates/' + frameworkName + '.md');
   }
   // draw blips on radar
   var blips = rink

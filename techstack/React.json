@@ -1,10 +1,8 @@
 {
-	"quadrant": 2,
-	"ring": 2,
-	"label": "React",
-	"description": "",
-	"stars": 1234,
-	"platform": [
-		"web"
-	]
+  "quadrant": 2,
+  "ring": 2,
+  "label": "React JS",
+  "description": "",
+  "stars": 1234,
+  "platform": ["web"]
 }
