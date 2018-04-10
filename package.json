@@ -1,8 +1,7 @@
 {
   "name": "tech_radar",
   "version": "1.0.0",
-  "description":
-    "At sapientrazorfish:XT (https://www.sapientrazorfish.com/), we maintain a [public Tech\r Radar] to help our engineering teams\r align on technology choices",
+  "description": "At sapientrazorfish:XT (https://www.sapientrazorfish.com/), we maintain a [public Tech\r Radar] to help our engineering teams\r align on technology choices",
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -10,6 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server",
+    "build": "gulp md",
     "deploy": "gulp && firebase deploy"
   },
   "repository": {
@@ -24,15 +24,22 @@
   },
   "homepage": "https://github.com/areai51/tech-radar#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "highlight.js": "^9.12.0",
+    "lodash": "^4.17.5",
+    "markdown-it": "^8.4.1",
+    "sanitize-html": "^1.18.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
-    "gulp-markdown": "^2.0.1",
     "gulp-json-concat": "^0.1.1",
-    "gulp-uglify": "^3.0.0"
+    "gulp-markdown": "^2.0.1",
+    "gulp-sequence": "^1.0.0",
+    "gulp-uglify": "^3.0.0",
+    "map-stream": "0.0.7",
+    "vinyl": "^2.1.0"
   }
 }
