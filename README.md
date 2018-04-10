@@ -7,3 +7,9 @@ the technologies which is not in demand any more and should move to
 alternative for that.
 
 ![https://xt-techradar.com/](./app/assets/techradar_1.png)
+
+### Parse markdown
+```
+npm run build
+```
+This creates `output.json` under `data` folder
